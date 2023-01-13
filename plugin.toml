@@ -1,0 +1,10 @@
+name = "lapce-lsp-java"
+version = "0.0.1"
+author = "xiaoma20082008"
+display-name = "Java"
+description = "Java for Lapce: powered by Eclipse JDT Language Server"
+wasm = "bin/lapce-lsp-java.wasm"
+repository = "xiaoma20082008/lapce-lsp-java"
+
+[configuration]
+language_id = "java"

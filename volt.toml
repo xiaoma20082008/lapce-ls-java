@@ -1,21 +1,29 @@
-name = "<plugin-name>"
-version = "0.0.0"
-author = "<your name>"
-display-name = "<plugin-display-name>"
-description = "<plugin-description>"
-wasm = "bin/<plugin-name>.wasm"
+name = "lapce-lsp-java"
+version = "0.0.1"
+author = "xiaoma20082008"
+display-name = "Java"
+description = "Java for Lapce: powered by Eclipse JDT Language Server"
+wasm = "bin/lapce-lsp-java.wasm"
+repository = "xiaoma20082008/lapce-lsp-java"
 
 [activation]
-language = []
-workspace-contains = []
+language = ["java"]
+workspace-contains = [
+    # java file
+    "**/*.java",
+    # maven project
+    "**/pom.xml",
+    # gradle project
+    "**/settings.gradle", "**/build.gradle.kts" ,
+]
 
-[config."volt.serverPath"]
+[config."lapce-lsp-java.serverPath"]
 default = ""
 description = "Path to custom LSP executable"
 
-# [config."volt.serverArgs"]
-# default = []
-# description = ""
+[config."lapce-lsp-java.serverArgs"]
+default = []
+description = ""
 
 # [config."lspSettingArray"]
 # default = []

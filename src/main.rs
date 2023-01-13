@@ -22,9 +22,9 @@ register_plugin!(State);
 fn initialize(params: InitializeParams) -> Result<()> {
     let document_selector: DocumentSelector = vec![DocumentFilter {
         // lsp language id
-        language: Some(String::from("language_id")),
+        language: Some(String::from("java")),
         // glob pattern
-        pattern: Some(String::from("**/*.{ext1,ext2}")),
+        pattern: Some(String::from("**/*.java")),
         // like file:
         scheme: None,
     }];
@@ -37,7 +37,7 @@ fn initialize(params: InitializeParams) -> Result<()> {
     // serverArgs = ["--arg1", "--arg2"]
     // ```
     if let Some(options) = params.initialization_options.as_ref() {
-        if let Some(lsp) = options.get("lsp") {
+        if let Some(lsp) = options.get("lapce-lsp-java") {
             if let Some(args) = lsp.get("serverArgs") {
                 if let Some(args) = args.as_array() {
                     if !args.is_empty() {
@@ -67,21 +67,6 @@ fn initialize(params: InitializeParams) -> Result<()> {
             }
         }
     }
-
-    // Architecture check
-    let _ = match VoltEnvironment::architecture().as_deref() {
-        Ok("x86_64") => "x86_64",
-        Ok("aarch64") => "aarch64",
-        _ => return Ok(()),
-    };
-
-    // OS check
-    let _ = match VoltEnvironment::operating_system().as_deref() {
-        Ok("macos") => "macos",
-        Ok("linux") => "linux",
-        Ok("windows") => "windows",
-        _ => return Ok(()),
-    };
 
     // Download URL
     // let _ = format!("https://github.com/<name>/<project>/releases/download/<version>/{filename}");
